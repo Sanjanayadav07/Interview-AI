@@ -1,0 +1,22 @@
+.env
+node_modules/
+dist/
+coverage/
+.DS_Store
+*.log
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+
+# Ignore build artifacts
+build/
+*.o
+*.a
+*.so
+# Ignore OS-specific files
+Thumbs.db
+Desktop.ini
+# Ignore IDE-specific files
+*.iml
