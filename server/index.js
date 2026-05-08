@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config({ path: "./.env" }); // 👈 load env FIRST
+dotenv.config({ path: "./.env" });
 
 import express from "express";
 import connectDb from "./config/connectDb.js";
@@ -11,7 +11,6 @@ import userRouter from "./routes/user.route.js";
 import interviewRouter from "./routes/interview.route.js";
 import paymentRouter from "./routes/payment.route.js";
 
-// ✅ Debug (optional)
 console.log("STRIPE SECRET =>", process.env.STRIPE_SECRET_KEY);
 
 const app = express();
@@ -26,6 +25,13 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 app.use(cookieParser());
 
+
+// ✅ Root Route
+app.get("/", (req, res) => {
+    res.send("Backend is running 🚀");
+});
+
+
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
@@ -33,8 +39,7 @@ app.use("/api/interview", interviewRouter);
 app.use("/api/payment", paymentRouter);
 
 connectDb();
-// Start server
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-    //connectDb();
 });
