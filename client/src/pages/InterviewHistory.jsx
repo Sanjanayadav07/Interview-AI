@@ -10,23 +10,42 @@ const InterviewHistory = () => {
     const [interviews, setInterviews] = useState([])
     const navigate = useNavigate()
 
-    useEffect(() => {
+ useEffect(() => {
+
         const getInterviews = async () => {
+
             try {
-                const result = await axios.get(ServerUrl + "/api/interview/get-interview", { withCredentials: true })
-                //setInterviews(result.data.interviews)
+
+                const token = localStorage.getItem("token");
+
+                const result = await axios.get(
+                    ServerUrl + "/api/interview/get-interview",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                        withCredentials: true
+                    }
+                );
+
                 setInterviews(
                     Array.isArray(result.data)
                         ? result.data
                         : result.data?.interviews || result.data?.data || []
-                )
-                console.log(result.data)
+                );
+
+                console.log(result.data);
+
             } catch (error) {
-                console.error("Error fetching interviews:", error)
+
+                console.error("Error fetching interviews:", error);
+
             }
-        }
-        getInterviews()
-    }, [])
+        };
+
+        getInterviews();
+
+    }, []);
 
 
     return (
