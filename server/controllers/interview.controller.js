@@ -1,6 +1,9 @@
 import fs from 'fs';
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs';
-// pdfjsLib from 'pdfjs-dist/legacy/build/pdf.mjs';
+import { DOMMatrix, ImageData, Path2D } from "@napi-rs/canvas";
+global.DOMMatrix = DOMMatrix;
+global.ImageData = ImageData;
+global.Path2D = Path2D;
 import { askAi } from '../services/openRouter.service.js';
 import User from '../models/user.model.js';
 import Interview from '../models/interview.model.js';
