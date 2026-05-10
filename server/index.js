@@ -45,7 +45,4 @@ app.use("/api/interview", interviewRouter);
 app.use("/api/payment", paymentRouter);
 
 connectDb();
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+export default app;
