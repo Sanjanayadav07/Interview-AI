@@ -17,7 +17,7 @@ import evalImg from "../assets/ai-ans.png";
 import resumeImg from "../assets/resume.png";
 import pdfImg from "../assets/pdf.png";
 import analyticsImg from "../assets/history.png";
-import hrImg from "../assets/hr.png";
+import hrImg from "../assets/HR.png";
 import techImg from "../assets/tech.png";
 import confidenceImg from "../assets/confi.png";
 import creditImg from "../assets/credit.png";
