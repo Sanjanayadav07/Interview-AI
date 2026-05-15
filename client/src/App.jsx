@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
@@ -12,37 +11,34 @@ import Pricing from './pages/Pricing'
 import InterviewReport from './pages/InterviewReport'
 import Success from "./pages/Success";
 
-// ✅ FIX 1: use env instead of hardcoding
-export const ServerUrl = import.meta.env.VITE_SERVER_URL;
-//|| "http://localhost:8000"
+export const ServerUrl = import.meta.env.VITE_SERVER_URL
 
 const App = () => {
   const dispatch = useDispatch()
-   useEffect(() => {
-      const getUser = async () => {
-        try {
-          const token = localStorage.getItem("token");
-          const result = await axios.get(
-            ServerUrl + "/api/user/current-user",
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-              withCredentials: true,
-            }
-          );
-          dispatch(setUserData(result.data))
-  
-        } catch (error) {
-          console.log("User fetch error:", error.response?.data || error.message)
-  
-          //  handle 400 safely
-          dispatch(setUserData(null))
-        }
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const result = await axios.get(
+          ServerUrl + "/api/user/current-user",
+          {
+            withCredentials: true, // ✅ ONLY THIS REQUIRED
+          }
+        )
+
+        dispatch(setUserData(result.data))
+      } catch (error) {
+        console.log(
+          "User fetch error:",
+          error.response?.data || error.message
+        )
+
+        dispatch(setUserData(null))
       }
-  
-      getUser()
-    }, [dispatch])
+    }
+
+    getUser()
+  }, [dispatch])
 
   return (
     <Routes>
